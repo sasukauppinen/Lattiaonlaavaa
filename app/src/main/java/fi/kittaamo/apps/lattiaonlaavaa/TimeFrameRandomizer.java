@@ -8,8 +8,8 @@ import java.security.SecureRandom;
 
 class TimeFrameRandomizer {
 
-    private int minValue;
-    private int maxValue;
+    private final int minValue;
+    private final int maxValue;
 
     /** Create new TimeFrameRandomizer
         @param min lowest possible int value out of this randomizer
