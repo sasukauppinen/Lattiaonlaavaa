@@ -28,4 +28,12 @@ class TimeFrameRandomizer {
 
         return result;
     }
+
+    int getMinValue() {
+        return minValue;
+    }
+
+    int getMaxValue() {
+        return maxValue;
+    }
 }

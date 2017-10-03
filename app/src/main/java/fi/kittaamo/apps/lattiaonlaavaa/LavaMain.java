@@ -17,6 +17,8 @@ import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LavaMain extends AppCompatActivity {
 
@@ -69,6 +71,9 @@ public class LavaMain extends AppCompatActivity {
         int min = Integer.parseInt(tvMin.getText().toString());
         int max = Integer.parseInt(tvMax.getText().toString());
         final TimeFrameRandomizer rndTime = new TimeFrameRandomizer(min, max);
+        Logger.getLogger("SKA2017").log(Level.WARNING, "SKA2017: Random = " + rndTime.GetNext());
+
+        // TODO Timer does not work like this
         Timer tmr = new Timer("Laava-ajastin");
         tmr.schedule(
         new TimerTask() {
