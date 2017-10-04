@@ -2,6 +2,7 @@ package fi.kittaamo.apps.lattiaonlaavaa;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -71,17 +72,16 @@ public class LavaMain extends AppCompatActivity {
         int min = Integer.parseInt(tvMin.getText().toString());
         int max = Integer.parseInt(tvMax.getText().toString());
         final TimeFrameRandomizer rndTime = new TimeFrameRandomizer(min, max);
-        Logger.getLogger("SKA2017").log(Level.WARNING, "SKA2017: Random = " + rndTime.GetNext());
+        int time = rndTime.GetNext();
+        Logger.getLogger("SKA2017").log(Level.WARNING, "SKA2017: Random = " + time + " [s]");
 
-        // TODO Timer does not work like this
-        Timer tmr = new Timer("Laava-ajastin");
-        tmr.schedule(
-        new TimerTask() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 createPlayer();
             }
-        }, rndTime.GetNext());
+        }, time*1000);
     }
 
     private void createPlayer() {

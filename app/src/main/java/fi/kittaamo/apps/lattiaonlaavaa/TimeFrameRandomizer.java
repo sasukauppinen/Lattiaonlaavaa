@@ -24,7 +24,8 @@ class TimeFrameRandomizer {
         int result;
         SecureRandom rnd = new SecureRandom();
 
-        result = rnd.nextInt(maxValue-minValue) + minValue;
+        //                      57      55          55
+        result = rnd.nextInt(maxValue-minValue+1) + minValue;
 
         return result;
     }
