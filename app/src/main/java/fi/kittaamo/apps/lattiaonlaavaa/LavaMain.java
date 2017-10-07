@@ -25,6 +25,7 @@ public class LavaMain extends AppCompatActivity {
 
     private TextView tvMin;
     private TextView tvMax;
+    private Button startBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +43,12 @@ public class LavaMain extends AppCompatActivity {
             }
         });
 
-        Button startBtn = (Button)findViewById(R.id.btnStart);
+        startBtn = (Button)findViewById(R.id.btnStart);
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startCountdown();
+                startBtn.setText(R.string.lopeta);
             }
         });
 
@@ -79,14 +81,29 @@ public class LavaMain extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                createPlayer();
+                playLattiaOnLaavaa();
             }
         }, time*1000);
     }
 
-    private void createPlayer() {
-        //int resID=getResources().getIdentifier( "lattiaonlaavaa.flac", "raw", getPackageName());
+    private void playLattiaOnLaavaa() {
         MediaPlayer mediaPlayer= MediaPlayer.create(this,R.raw.lattiaonlaavaa);
+        mediaPlayer.start();
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
+        {
+            @Override
+            public void onCompletion(MediaPlayer mp)
+            {
+                play543210();
+            }
+        });
+
+        startBtn.setText(R.string.aloita);
+    }
+
+    private void play543210() {
+        MediaPlayer mediaPlayer= MediaPlayer.create(this,R.raw.snd543210);
         mediaPlayer.start();
     }
 
